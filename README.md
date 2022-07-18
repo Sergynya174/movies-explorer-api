@@ -32,8 +32,8 @@
 
 ### Адреса сервера
 
-+ https://api.movies-searcher.nomoredomains.club/signup
-+ https://api.movies-searcher.nomoredomains.club/signin
-+ https://api.movies-searcher.nomoredomains.club/users/me
-+ https://api.movies-searcher.nomoredomains.club/movies
-+ https://api.movies-searcher.nomoredomains.club/movies/:id
++ 
++ 
++ 
++ 
++ 
