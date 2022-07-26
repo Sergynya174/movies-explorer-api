@@ -19,7 +19,7 @@ router.post(
 );
 
 router.delete(
-  '/movies/_id',
+  '/movies/:movieId',
   deleteMovieValidation,
   deleteMovies,
 );

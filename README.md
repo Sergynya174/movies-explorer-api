@@ -31,8 +31,8 @@
 
 ### Адреса сервера
 
-+ 
-+ 
-+ 
-+ 
-+ 
++ https://api.sergynya174.developer.diplom.nomoredomains.xyz/signup
++ https://api.sergynya174.developer.diplom.nomoredomains.xyz/signin
++ https://api.sergynya174.developer.diplom.nomoredomains.xyz/users/me
++ https://api.sergynya174.developer.diplom.nomoredomains.xyz/movies
++ https://api.sergynya174.developer.diplom.nomoredomains.xyz/movies/:id
