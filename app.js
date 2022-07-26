@@ -24,10 +24,10 @@ app.use(
   cors({
     credentials: true,
     origin: [
-      '',
-      '',
-      '',
-      '',
+      'https://api.sergynya174.developer.diplom.nomoredomains.xyz',
+      'http://api.sergynya174.developer.diplom.nomoredomains.xyz',
+      'https://sergynya174.developer.diplom.nomoredomains.xyz',
+      'http://sergynya174.developer.diplom.nomoredomains.xyz',
       'http://localhost:3001',
       'http://localhost:3000',
       'https://localhost:3001',
