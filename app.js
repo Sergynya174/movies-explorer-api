@@ -9,7 +9,6 @@ const routes = require('./routes');
 const { putError } = require('./utils/error-codes');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const limiter = require('./middlewares/limiter');
-const { logout } = require('./controllers/users');
 
 const app = express();
 
@@ -52,9 +51,8 @@ app.use('/', routes);
 
 app.use(errorLogger);
 app.use(errors());
-app.use(putError);
-app.post('/logout', logout);
 
+app.use(putError);
 app.listen(PORT, () => {
   console.log(`App started on ${PORT} port`);
 });

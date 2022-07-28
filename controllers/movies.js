@@ -29,12 +29,12 @@ const deleteMovies = (req, res, next) => {
   Movie.findById(movieId)
     .then((movie) => {
       if (!movie) {
-        throw new NotFoundError('Запрашиваемая карточка не найдена');
+        throw new NotFoundError('Фильм с указанным _id не найден');
       }
       if (movie.owner.toString() !== userId) {
         throw new ForbiddenError('У вас нет доступа');
       } else {
-        Movie.findByIdAndRemove(movieId)
+        return Movie.findByIdAndRemove(movieId)
           .then(() => {
             res.send({ messege: 'Фильм удален' });
           });

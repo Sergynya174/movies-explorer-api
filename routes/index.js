@@ -19,8 +19,8 @@ router.post(
 );
 
 router.use(Authorized);
-router.use('/', userRouter);
-router.use('/', movieRouter);
+router.use('/users', userRouter);
+router.use('/movies', movieRouter);
 
 router.all('*', () => {
   throw new NotFoundError('Страница не найдена');
