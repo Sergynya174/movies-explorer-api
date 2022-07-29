@@ -66,6 +66,7 @@ const patchUsers = (req, res, next) => {
   const { name, email } = req.body;
 
   User.findByIdAndUpdate(
+    req.user._id,
     { name, email },
     { new: true, runValidators: true },
   )
