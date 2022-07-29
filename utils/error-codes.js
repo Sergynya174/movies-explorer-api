@@ -1,3 +1,5 @@
+const validator = require('validator');
+
 const putError = (err, req, res, next) => {
   if (err.statusCode) {
     return res
@@ -8,11 +10,13 @@ const putError = (err, req, res, next) => {
   return next(err);
 };
 
-const validateURL = (value) => {
-  if (value !== value.match(/^https?:\/\/(www\.)?[a-zA-Z\d-]+\.[\w\d\-.~:/?#[\]@!$&'()*+,;=]{2,}#?$/).join('')) {
-    throw new Error('Неверный формат ссылки');
+const validateURL = (url) => {
+  const result = validator.isUrl(url);
+
+  if (!result) {
+    throw new Error('Некорректный формат ссылки');
   }
-  return value;
+  return url;
 };
 
 module.exports = {
