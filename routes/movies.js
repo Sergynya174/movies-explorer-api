@@ -3,6 +3,7 @@ const {
   createMovieValidation,
   deleteMovieValidation,
 } = require('../utils/validations');
+const Authorized = require('../middlewares/auth');
 
 const {
   getMovies,
@@ -10,16 +11,15 @@ const {
   deleteMovies,
 } = require('../controllers/movies');
 
-router.get('/movies', getMovies);
-
+router.use(Authorized);
+router.get('/', getMovies);
 router.post(
-  '/movies',
+  '/',
   createMovieValidation,
   postMovies,
 );
-
 router.delete(
-  '/movies/:movieId',
+  '/:movieId',
   deleteMovieValidation,
   deleteMovies,
 );

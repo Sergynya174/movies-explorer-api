@@ -51,8 +51,8 @@ app.use('/', routes);
 
 app.use(errorLogger);
 app.use(errors());
-app.use(putError);
 
+app.use(putError);
 app.listen(PORT, () => {
   console.log(`App started on ${PORT} port`);
 });
