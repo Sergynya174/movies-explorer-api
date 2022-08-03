@@ -30,10 +30,6 @@ const createUser = (req, res, next) => {
     password,
   } = req.body;
 
-  if (!password || !email) {
-    throw new ValidationError('Почта или пароль должны быть заполнены');
-  }
-
   User.findOne({ email })
     .then((user) => {
       if (user) {
@@ -68,28 +64,23 @@ const createUser = (req, res, next) => {
 
 const patchUsers = (req, res, next) => {
   const { name, email } = req.body;
-  const userId = req.user._id;
 
   User.findByIdAndUpdate(
-    userId,
+    req.user._id,
     { name, email },
     { new: true, runValidators: true },
   )
-    .then((user) => {
-      if (!user) {
-        throw new NotFoundError('Запрашиваемый пользователь не найден');
-      }
-      res.send({ data: user });
-    })
+    .then((user) => res.send(user))
     .catch((err) => {
-      if (err.name === 'ValidationError') {
-        next(
-          new ValidationError(`Переданы некорректные данные ${err.message}`),
-        );
-      } else {
-        next(err);
+      if (err.name === 'ValidationError' || err.name === 'CastError') {
+        throw new ValidationError('Введены некорректные данные');
       }
-    });
+      if (err.code === 11000) {
+        throw new UserAlreadyExists('Такой email уже существует');
+      }
+      next(err);
+    })
+    .catch(next);
 };
 
 const login = (req, res, next) => {
@@ -110,14 +101,9 @@ const login = (req, res, next) => {
     });
 };
 
-const logout = (req, res) => {
-  res.clearCookie('jwt').send();
-};
-
 module.exports = {
   getUsers,
   createUser,
   patchUsers,
   login,
-  logout,
 };
