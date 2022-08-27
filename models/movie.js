@@ -1,5 +1,11 @@
 const mongoose = require('mongoose');
-const { isURL } = require('validator');
+const validator = require('validator');
+
+const validUrl = (value) => {
+  if (!validator.isURL(value)) {
+    throw new Error('Некорректная ссылка');
+  }
+};
 
 const movieSchema = new mongoose.Schema(
   {
@@ -26,17 +32,17 @@ const movieSchema = new mongoose.Schema(
     image: {
       type: String,
       required: true,
-      validate: [isURL, { message: 'Некорректный формат ссылки' }],
+      validate: { validator: validUrl },
     },
     trailerLink: {
       type: String,
       required: true,
-      validate: [isURL, { message: 'Некорректный формат ссылки' }],
+      validate: { validator: validUrl },
     },
     thumbnail: {
       type: String,
       required: true,
-      validate: [isURL, { message: 'Некорректный формат ссылки' }],
+      validate: { validator: validUrl },
     },
     owner: {
       type: mongoose.Schema.Types.ObjectId,

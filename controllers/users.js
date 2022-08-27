@@ -93,8 +93,13 @@ const login = (req, res, next) => {
         NODE_ENV === 'production' ? JWT_SECRET : '10d5865c85b895c6386a5501acfee2775244c5b6f4d2c16036b1c5858d392b34',
         { expiresIn: '7d' },
       );
-      const { name } = user;
-      res.send({ token, name });
+      const userData = {
+        name: user.name,
+        email: user.email,
+        _id: user._id,
+        token,
+      };
+      return res.send(userData);
     })
     .catch(() => {
       next(new AuthError('Неверный логин или пароль'));
