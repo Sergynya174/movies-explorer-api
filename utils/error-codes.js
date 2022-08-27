@@ -11,7 +11,7 @@ const putError = (err, req, res, next) => {
 };
 
 const validateURL = (url) => {
-  const result = validator.isUrl(url);
+  const result = validator.isURL(url);
 
   if (!result) {
     throw new Error('Некорректный формат ссылки');
