@@ -11,7 +11,7 @@ const { JWT_SECRET, NODE_ENV } = process.env;
 const saltRounds = 10;
 
 const getUsers = (req, res, next) => {
-  User.find(req.user._id)
+  User.findById(req.user._id)
     .then((user) => {
       if (!user) {
         throw new NotFoundError('Такого пользователя нет');
