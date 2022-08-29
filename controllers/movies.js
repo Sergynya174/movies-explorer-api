@@ -25,7 +25,7 @@ const postMovies = (req, res, next) => {
 
 const deleteMovies = (req, res, next) => {
   const { movieId } = req.params;
-  const { userId } = req.user._id;
+  const userId = req.user._id;
   Movie.findById(movieId)
     .then((movie) => {
       if (!movie) {
